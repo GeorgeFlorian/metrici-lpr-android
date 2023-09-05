@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,12 +16,7 @@ const styles = StyleSheet.create({
 const MainLayout = ({ children }) => {
   return (
     <View style={styles.container}>
-      <StatusBar
-        style="auto"
-        animated
-        backgroundColor={"#fff"}
-        translucent={true}
-      />
+      <StatusBar style="light" />
       {children}
     </View>
   );

@@ -3,6 +3,7 @@
     "name": "metrici-lpr-android",
     "slug": "metrici-lpr-android",
     "version": "1.0.0",
+    "scheme": "metrici-lpr",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -32,7 +33,14 @@
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
         }
-      ]
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your image gallery."
+        }
+      ],
+      "expo-router"
     ]
   }
 }
