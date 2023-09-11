@@ -41,13 +41,18 @@ const HomeScreen = () => {
 
   if (selectedImage) {
     console.log("selectedImage", selectedImage);
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append the image to the FormData object with a specified field name
+    formData.append("image", selectedImage);
 
     // fetch("http://dev2.metrici.ro/ext/cloud/get_plate_number.php", {
     //   method: "POST",
-    //   // headers: {
-    //   //   "Content-Type": "application/json",
-    //   // },
-    //   body: JSON.stringify({ image: selectedImage }),
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    //   body: formData,
     // })
     //   .then((response) => response.json())
     //   .then((data) => {
