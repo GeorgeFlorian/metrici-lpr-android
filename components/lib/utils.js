@@ -1,4 +1,5 @@
 import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
+import { router } from "expo-router";
 
 export const uploadImage = async (imageUri, setIsUploading) => {
   setIsUploading(true);
@@ -14,6 +15,6 @@ export const uploadImage = async (imageUri, setIsUploading) => {
     // setIsUploading(false);
     console.log("Image uploaded successfully");
     const result = JSON.stringify(manipResult);
-    // router.push("/result", { result: result });
+    router.push("/result", { result: result });
   }
 };

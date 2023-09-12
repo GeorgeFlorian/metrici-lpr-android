@@ -4,14 +4,12 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 const styles = StyleSheet.create({
   container: {
-    // flex: 0,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#000",
   },
   img: {
     width: "80%",
-    // height: 200,
     marginBottom: 20,
     resizeMode: "contain",
   },
