@@ -24,13 +24,12 @@ const styles = StyleSheet.create({
 
 const PreviewScreen = () => {
   const params = useLocalSearchParams();
-  const imageUri = params.imageUri;
-  const [isUploading, setIsUploading] = React.useState(false);
+  const selectedImage = params.selectedImage;
 
-  const onUploadImage = async () => await uploadImage(imageUri, setIsUploading);
+  const onUploadImage = async () => await uploadImage(selectedImage);
   const onChangeImage = () => router.replace("/");
 
-  if (!imageUri)
+  if (!selectedImage)
     return (
       <View style={styles.imageContainer}>
         <Text style={styles.text}>No image to preview</Text>
@@ -40,10 +39,9 @@ const PreviewScreen = () => {
 
   return (
     <View style={styles.imageContainer}>
-      <Image source={{ uri: imageUri }} style={styles.capturedImage} />
+      <Image source={{ uri: selectedImage }} style={styles.capturedImage} />
       <BTN label={"Send Image"} onPress={onUploadImage} icon={"send"} />
       <BTN label={"Change Image"} onPress={onChangeImage} />
-      <LoadingSpinner isLoading={isUploading} />
     </View>
   );
 };

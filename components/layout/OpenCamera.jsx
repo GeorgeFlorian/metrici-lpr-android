@@ -79,10 +79,10 @@ const OpenCamera = () => {
       const image = result.assets[0];
       router.push({
         pathname: "/preview",
-        params: { imageUri: image.uri },
+        params: { selectedImage: image.uri },
       });
     } else {
-      alert("You did not select any image.");
+      // alert("You did not select any image.");
     }
   };
 
