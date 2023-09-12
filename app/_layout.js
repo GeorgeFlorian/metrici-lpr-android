@@ -1,4 +1,3 @@
-import HomeScreen from "components/screens/HomeScreen";
 import { Stack } from "expo-router";
 
 export default function Layout() {
@@ -19,7 +18,7 @@ export default function Layout() {
         name="index"
         options={{ headerTitle: "Home", headerShown: false }}
       />
-      <Stack.Screen name="camera" options={{ headerTitle: "Camera" }} />
+      <Stack.Screen name="preview" options={{ headerTitle: "Preview" }} />
     </Stack>
   );
 }
