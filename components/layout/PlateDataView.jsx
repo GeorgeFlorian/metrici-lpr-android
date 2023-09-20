@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 
 const PlateDataView = ({ plateData }) => {
-  // console.log("plateData", plateData);
-
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
@@ -27,6 +25,7 @@ const PlateDataView = ({ plateData }) => {
 
 const styles = StyleSheet.create({
   container: {
+    width: "100%",
     backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,

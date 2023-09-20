@@ -1,8 +1,9 @@
 import BTN from "components/layout/BTN";
-import LoadingSpinner from "components/layout/LoadingSpinner";
-import { uploadImage } from "components/lib/utils";
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import ErrorModal from "components/layout/ErrorModal";
+import { compressImage } from "components/lib/utils";
+import ResultBox from "components/layout/ResultBox";
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 
 const styles = StyleSheet.create({
@@ -13,11 +14,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   text: {
-    color: "#fff",
+    color: "#f4511e",
   },
-  capturedImage: {
+  selectedImage: {
     width: 300,
-    height: 300,
+    height: 350,
     marginBottom: 40,
   },
 });
@@ -25,8 +26,12 @@ const styles = StyleSheet.create({
 const PreviewScreen = () => {
   const params = useLocalSearchParams();
   const selectedImage = params.selectedImage;
+  const [compressedImage, setCompressedImage] = useState(null);
+  const [error, setError] = useState(null);
 
-  const onUploadImage = async () => await uploadImage(selectedImage);
+  const onCompressImage = async () => {
+    setCompressedImage(await compressImage(selectedImage));
+  };
   const onChangeImage = () => router.replace("/");
 
   if (!selectedImage)
@@ -37,11 +42,23 @@ const PreviewScreen = () => {
       </View>
     );
 
+  const reset = () => {
+    setCompressedImage(null);
+    setError(null);
+  };
+
   return (
     <View style={styles.imageContainer}>
-      <Image source={{ uri: selectedImage }} style={styles.capturedImage} />
-      <BTN label={"Send Image"} onPress={onUploadImage} icon={"send"} />
-      <BTN label={"Change Image"} onPress={onChangeImage} />
+      <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
+      {compressedImage && !error ? (
+        <ResultBox image={compressedImage} error={error} setError={setError} />
+      ) : (
+        <>
+          <ErrorModal visible={error} reset={reset} />
+          <BTN label={"Send Image"} onPress={onCompressImage} icon={"send"} />
+          <BTN label={"Change Image"} onPress={onChangeImage} />
+        </>
+      )}
     </View>
   );
 };

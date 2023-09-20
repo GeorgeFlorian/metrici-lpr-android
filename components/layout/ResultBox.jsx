@@ -1,27 +1,17 @@
 import LoadingSpinner from "components/layout/LoadingSpinner";
 import PlateDataView from "components/layout/PlateDataView";
-import { router, useLocalSearchParams } from "expo-router";
+import { TIMEOUT, UPLOAD_IMG_URL } from "components/lib/constants";
+import { router } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import * as FileSystem from "expo-file-system";
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000",
-  },
-  text: {
-    color: "#FFF",
-  },
-});
-
-function ResultScreen() {
-  const params = useLocalSearchParams();
-  const compressedImage = JSON.parse(params.compressedImage);
+function ResultBox({ image, error, setError }) {
+  const compressedImage = JSON.parse(image);
   const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
+
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  setTimeout(() => controller.abort(), TIMEOUT);
 
   if (!compressedImage || !compressedImage.uri) router.back();
 
@@ -37,18 +27,20 @@ function ResultScreen() {
     // Append the image to the FormData object with a specified field name
     formData.append("image", img);
 
-    fetch("http://dev2.metrici.ro/ext/cloud/get_plate_number.php", {
+    fetch(UPLOAD_IMG_URL, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "multipart/form-data",
       },
       body: formData,
+      signal: signal,
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.error === true) throw new Error(JSON.stringify(data));
         setResponse(data.response.body);
+        console.log("Success:", data.response);
       })
       .catch((error) => {
         console.log("Error:", error.message);
@@ -57,17 +49,13 @@ function ResultScreen() {
   }, []);
 
   const isUploading = !response && !error;
-  // if (!isUploading) console.log(response);
 
   return (
-    <View style={styles.container}>
-      <LoadingSpinner isLoading={isUploading} />
+    <>
+      <LoadingSpinner visible={isUploading} />
       {response && <PlateDataView plateData={response["1"]} />}
-      {error && (
-        <Text style={styles.text}>Error: Please go back and try again</Text>
-      )}
-    </View>
+    </>
   );
 }
 
-export default ResultScreen;
+export default ResultBox;

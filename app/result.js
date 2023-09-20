@@ -1,5 +1,5 @@
-import ResultScreen from "components/screens/ResultScreen";
+import ResultBox from "components/layout/ResultBox";
 
 export default function Result() {
-  return <ResultScreen />;
+  return <ResultBox />;
 }

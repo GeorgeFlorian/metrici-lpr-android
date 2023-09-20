@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function LoadingSpinner({ isLoading = false }) {
+function LoadingSpinner({ visible = false }) {
   return (
     <Spinner
-      visible={isLoading}
+      visible={visible}
       textContent={"Loading..."}
       textStyle={styles.spinnerTextStyle}
       customIndicator={<Grid size={70} color="#FFF" />}
@@ -26,4 +26,3 @@ function LoadingSpinner({ isLoading = false }) {
 }
 
 export default LoadingSpinner;
-
