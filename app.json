@@ -22,7 +22,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.georgeflorian.metricilprandroid"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -41,6 +46,14 @@
         }
       ],
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "88bdf78c-f782-449c-b12d-e292f58995ee"
+      }
+    }
   }
 }

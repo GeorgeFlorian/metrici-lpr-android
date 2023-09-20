@@ -1,7 +1,7 @@
 import BTN from "components/layout/BTN";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { Button, StyleSheet, View } from "react-native";
+import { Button, StyleSheet, View, Text } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
