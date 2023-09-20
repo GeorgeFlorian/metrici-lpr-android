@@ -19,6 +19,7 @@ export default function Layout() {
         options={{ headerTitle: "Home", headerShown: false }}
       />
       <Stack.Screen name="preview" options={{ headerTitle: "Preview" }} />
+      <Stack.Screen name="result" options={{ headerTitle: "Result" }} />
     </Stack>
   );
 }

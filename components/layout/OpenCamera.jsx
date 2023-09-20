@@ -1,7 +1,6 @@
 import BTN from "components/layout/BTN";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { useState } from "react";
 import { Button, StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
@@ -80,10 +79,10 @@ const OpenCamera = () => {
       const image = result.assets[0];
       router.push({
         pathname: "/preview",
-        params: { imageUri: image.uri },
+        params: { selectedImage: image.uri },
       });
     } else {
-      alert("You did not select any image.");
+      // alert("You did not select any image.");
     }
   };
 

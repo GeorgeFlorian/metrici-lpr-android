@@ -14,10 +14,10 @@ const OpenGallery = () => {
 
       router.push({
         pathname: "/preview",
-        params: { imageUri: image.uri },
+        params: { selectedImage: image.uri },
       });
     } else {
-      alert("You did not select any image.");
+      // alert("You did not select any image.");
     }
   };
 

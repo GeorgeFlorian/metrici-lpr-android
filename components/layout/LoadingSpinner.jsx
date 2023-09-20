@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Grid } from "react-native-animated-spinkit";
 import Spinner from "react-native-loading-spinner-overlay";
 
@@ -7,17 +7,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: "#F5FCFF",
   },
   spinnerTextStyle: {
     color: "#FFF",
   },
 });
 
-function LoadingSpinner({ isLoading = false }) {
+function LoadingSpinner({ visible = false }) {
   return (
     <Spinner
-      visible={isLoading}
+      visible={visible}
       textContent={"Loading..."}
       textStyle={styles.spinnerTextStyle}
       customIndicator={<Grid size={70} color="#FFF" />}
