@@ -38,7 +38,7 @@ const PreviewScreen = () => {
     return (
       <View style={styles.imageContainer}>
         <Text style={styles.text}>No image to preview</Text>
-        <BTN label={"Go back"} onPress={() => router.replace("/index")} />
+        <BTN label={"Go back"} onPress={() => router.replace("/")} />
       </View>
     );
 
