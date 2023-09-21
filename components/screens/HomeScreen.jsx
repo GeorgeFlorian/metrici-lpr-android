@@ -1,3 +1,4 @@
+import logo from "assets/img/logo.png";
 import OpenCamera from "components/layout/OpenCamera";
 import OpenGallery from "components/layout/OpenGallery";
 import { GRANT_PERMISSION_TEXT } from "components/lib/constants";
@@ -18,6 +19,7 @@ const styles = StyleSheet.create({
   },
   permissionContainer: {
     flex: 1,
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
@@ -54,10 +56,15 @@ const HomeScreen = () => {
     return <View />;
   }
 
+  if (!logo) {
+    return null;
+  }
+
   if (!galleryPermission.granted || !cameraPermission.granted) {
     // Camera and Image Gallery permissions are not granted yet
     return (
       <View style={styles.permissionContainer}>
+        <Image source={logo} style={styles.img} />
         <Text style={styles.permissionText}>{GRANT_PERMISSION_TEXT}</Text>
         <Button
           onPress={requestAllPermissions}
