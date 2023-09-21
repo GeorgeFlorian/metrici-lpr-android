@@ -1,7 +1,10 @@
 import OpenCamera from "components/layout/OpenCamera";
 import OpenGallery from "components/layout/OpenGallery";
+import { GRANT_PERMISSION_TEXT } from "components/lib/constants";
+import * as ImagePicker from "expo-image-picker";
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
@@ -13,10 +16,57 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     resizeMode: "contain",
   },
+  permissionContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+    gap: 16,
+  },
+  permissionText: {
+    textAlign: "center",
+    marginBottom: 16,
+    color: "#FFF",
+    fontSize: 16,
+  },
+  permissionButton: {
+    marginVertical: 8,
+  },
 });
 
 const HomeScreen = () => {
   const logo = require("assets/img/logo.png");
+
+  const [cameraPermission, requestCameraPermission] =
+    ImagePicker.useCameraPermissions();
+  const [galleryPermission, requestGalleryPermission] =
+    ImagePicker.useMediaLibraryPermissions();
+
+  const requestAllPermissions = async () => {
+    // First request camera permission
+    await requestCameraPermission();
+    // Then request gallery permission
+    await requestGalleryPermission();
+  };
+
+  if (!galleryPermission || !cameraPermission) {
+    // Camera permissions are still loading
+    return <View />;
+  }
+
+  if (!galleryPermission.granted || !cameraPermission.granted) {
+    // Camera and Image Gallery permissions are not granted yet
+    return (
+      <View style={styles.permissionContainer}>
+        <Text style={styles.permissionText}>{GRANT_PERMISSION_TEXT}</Text>
+        <Button
+          onPress={requestAllPermissions}
+          title="Grant Permissions"
+          style={styles.permissionButton}
+        />
+      </View>
+    );
+  }
 
   return (
     <>
