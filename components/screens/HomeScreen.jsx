@@ -1,17 +1,16 @@
 import logo from "assets/img/logo.png";
 import OpenCamera from "components/layout/OpenCamera";
 import OpenGallery from "components/layout/OpenGallery";
-import { GRANT_PERMISSION_TEXT } from "components/lib/constants";
+import {
+  CONTAINER_STYLE,
+  GRANT_PERMISSION_TEXT,
+} from "components/lib/constants";
 import * as ImagePicker from "expo-image-picker";
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000",
-  },
+  container: CONTAINER_STYLE,
   img: {
     width: "80%",
     marginBottom: 20,
@@ -56,10 +55,6 @@ const HomeScreen = () => {
     return <View />;
   }
 
-  if (!logo) {
-    return null;
-  }
-
   if (!galleryPermission.granted || !cameraPermission.granted) {
     // Camera and Image Gallery permissions are not granted yet
     return (
@@ -76,15 +71,13 @@ const HomeScreen = () => {
   }
 
   return (
-    <>
+    <View style={styles.container}>
       <Image source={logo} style={styles.img} />
-      <View style={styles.container}>
-        {/*Open the image gallery*/}
-        <OpenGallery />
-        {/*Open the camera */}
-        <OpenCamera />
-      </View>
-    </>
+      {/*Open the image gallery*/}
+      <OpenGallery />
+      {/*Open the camera */}
+      <OpenCamera />
+    </View>
   );
 };
 

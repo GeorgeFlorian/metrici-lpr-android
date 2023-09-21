@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "metrici-lpr-android",
+    "name": "Metrici LPR",
     "slug": "metrici-lpr-android",
     "version": "1.0.0",
     "scheme": "metrici-lpr",
@@ -25,7 +25,7 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.georgeflorian.metricilprandroid"
+      "package": "com.metrici.lprandroid"
     },
     "web": {
       "favicon": "./assets/favicon.png"

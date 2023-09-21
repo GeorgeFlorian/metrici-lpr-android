@@ -1,5 +1,6 @@
 import BTN from "components/layout/BTN";
 import ErrorModal from "components/layout/ErrorModal";
+import { CONTAINER_STYLE } from "components/lib/constants";
 import { compressImage } from "components/lib/utils";
 import ResultBox from "components/layout/ResultBox";
 import React, { useState } from "react";
@@ -7,19 +8,15 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 
 const styles = StyleSheet.create({
-  imageContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000",
-  },
+  imageContainer: CONTAINER_STYLE,
   text: {
     color: "#f4511e",
   },
   selectedImage: {
-    width: 300,
-    height: 350,
+    width: "90%",
+    height: "60%",
     marginBottom: 40,
+    resizeMode: "contain",
   },
 });
 

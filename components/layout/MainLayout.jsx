@@ -1,13 +1,9 @@
+import { CONTAINER_STYLE } from "components/lib/constants";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000",
-  },
+  container: CONTAINER_STYLE,
   text: {
     color: "#fff",
   },

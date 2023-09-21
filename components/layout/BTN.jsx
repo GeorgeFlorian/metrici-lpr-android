@@ -1,3 +1,4 @@
+import { BACKGROUND_COLOR } from "components/lib/constants";
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -38,12 +39,10 @@ const BTN = ({ label, theme = "primary", icon, onPress = () => null }) => {
           <FontAwesome
             name={icon}
             size={18}
-            color="#25292e"
+            color="#000"
             style={styles.buttonIcon}
           />
-          <Text style={[styles.buttonLabel, { color: "#25292e" }]}>
-            {label}
-          </Text>
+          <Text style={[styles.buttonLabel, { color: "#000" }]}>{label}</Text>
         </Pressable>
       </View>
     );
