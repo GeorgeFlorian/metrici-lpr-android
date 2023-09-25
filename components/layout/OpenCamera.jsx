@@ -7,13 +7,20 @@ const OpenCamera = () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       quality: 1,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      aspect: [1, 1],
     });
 
     if (!result.canceled) {
       const image = result.assets[0];
+
       router.push({
         pathname: "/preview",
-        params: { selectedImage: image.uri },
+        params: {
+          imageUri: image.uri,
+          imageHeight: image.height,
+          imageWidth: image.width,
+        },
       });
     } else {
       // alert("You did not select any image.");
