@@ -25,7 +25,7 @@ const PlateDataView = ({ plateData }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
+    width: "90%",
     backgroundColor: "#fff",
     padding: 20,
     borderRadius: 10,
@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#333",
+    color: "#000",
   },
   value: {
     fontSize: 16,
-    color: "#666",
+    color: "#444",
   },
 });
 
