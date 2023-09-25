@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   selectedImage: {
     width: "90%",
-    height: "60%",
+    height: "50%",
     marginBottom: 40,
     resizeMode: "contain",
   },
@@ -22,16 +22,20 @@ const styles = StyleSheet.create({
 
 const PreviewScreen = () => {
   const params = useLocalSearchParams();
-  const selectedImage = params.selectedImage;
   const [compressedImage, setCompressedImage] = useState(null);
   const [error, setError] = useState(null);
+  const selectedImage = {
+    uri: params.imageUri,
+    width: params.imageWidth,
+    height: params.imageHeight,
+  };
 
   const onCompressImage = async () => {
     setCompressedImage(await compressImage(selectedImage));
   };
   const onChangeImage = () => router.replace("/");
 
-  if (!selectedImage)
+  if (!selectedImage.uri)
     return (
       <View style={styles.imageContainer}>
         <Text style={styles.text}>No image to preview</Text>
@@ -46,7 +50,7 @@ const PreviewScreen = () => {
 
   return (
     <View style={styles.imageContainer}>
-      <Image source={{ uri: selectedImage }} style={styles.selectedImage} />
+      <Image source={{ uri: selectedImage.uri }} style={styles.selectedImage} />
       {compressedImage && !error ? (
         <ResultBox image={compressedImage} error={error} setError={setError} />
       ) : (

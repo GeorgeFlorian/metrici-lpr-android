@@ -7,6 +7,8 @@ const OpenGallery = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
       quality: 1,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      aspect: [1, 1],
     });
 
     if (!result.canceled) {
@@ -14,7 +16,11 @@ const OpenGallery = () => {
 
       router.push({
         pathname: "/preview",
-        params: { selectedImage: image.uri },
+        params: {
+          imageUri: image.uri,
+          imageHeight: image.height,
+          imageWidth: image.width,
+        },
       });
     } else {
       // alert("You did not select any image.");
