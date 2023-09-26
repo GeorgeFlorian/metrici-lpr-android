@@ -33,7 +33,8 @@ const PreviewScreen = () => {
   const onCompressImage = async () => {
     setCompressedImage(await compressImage(selectedImage));
   };
-  const onChangeImage = () => router.replace("/");
+  const onChangeImage = () =>
+    router.canGoBack() ? router.back() : router.replace("/");
 
   if (!selectedImage.uri)
     return (
