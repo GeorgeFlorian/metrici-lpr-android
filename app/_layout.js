@@ -14,10 +14,7 @@ export default function Layout() {
         },
       }}
     >
-      <Stack.Screen
-        name="index"
-        options={{ headerTitle: "Home", headerShown: false }}
-      />
+      <Stack.Screen name="index" options={{ headerTitle: "Home" }} />
       <Stack.Screen name="preview" options={{ headerTitle: "Preview" }} />
       <Stack.Screen name="result" options={{ headerTitle: "Result" }} />
     </Stack>

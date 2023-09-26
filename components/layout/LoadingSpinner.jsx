@@ -14,14 +14,17 @@ const styles = StyleSheet.create({
   },
 });
 
-function LoadingSpinner({ visible = false }) {
+function LoadingSpinner({
+  visible = false,
+  overlayColor = "rgba(0, 0, 0, 0.7)",
+}) {
   return (
     <Spinner
       visible={visible}
       textContent={"Loading..."}
       textStyle={styles.spinnerTextStyle}
       customIndicator={<Grid size={60} color="#FFF" />}
-      overlayColor={"rgba(0, 0, 0, 0.7)"}
+      overlayColor={overlayColor}
     />
   );
 }

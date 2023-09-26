@@ -2,7 +2,7 @@ import BTN from "components/layout/BTN";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 
-const OpenCamera = () => {
+const OpenCamera = ({ setImagePicked }) => {
   const pickCamera = async () => {
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
@@ -13,6 +13,7 @@ const OpenCamera = () => {
 
     if (!result.canceled) {
       const image = result.assets[0];
+      setImagePicked(true);
 
       router.push({
         pathname: "/preview",
@@ -24,6 +25,7 @@ const OpenCamera = () => {
       });
     } else {
       // alert("You did not select any image.");
+      setImagePicked(false);
     }
   };
 

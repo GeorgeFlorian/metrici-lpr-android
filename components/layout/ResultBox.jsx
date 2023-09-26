@@ -8,14 +8,14 @@ function ResultBox({ image, error, setError }) {
   const compressedImage = JSON.parse(image);
   const [response, setResponse] = useState(null);
 
-  const controller = new AbortController();
-  const signal = controller.signal;
-
-  setTimeout(() => controller.abort(), TIMEOUT);
-
   if (!compressedImage || !compressedImage.uri) router.back();
 
   useEffect(() => {
+    console.log("Sending image to server...");
+    const controller = new AbortController();
+    const signal = controller.signal;
+    setTimeout(() => controller.abort(), TIMEOUT);
+
     const formData = new FormData();
 
     const img = {
