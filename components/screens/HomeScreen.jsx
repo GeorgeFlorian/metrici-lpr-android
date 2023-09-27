@@ -1,14 +1,10 @@
-import LoadingSpinner from "components/layout/LoadingSpinner";
-import OpenCamera from "components/layout/OpenCamera";
-import OpenGallery from "components/layout/OpenGallery";
+import PickImage from "components/layout/PickImage";
 import {
   CONTAINER_STYLE,
   GRANT_PERMISSION_TEXT,
 } from "components/lib/constants";
 import * as ImagePicker from "expo-image-picker";
-import React, { useEffect, useState } from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
-import { useNavigation, useRouter } from "expo-router";
 
 const styles = StyleSheet.create({
   container: CONTAINER_STYLE,
@@ -38,15 +34,6 @@ const styles = StyleSheet.create({
 
 const HomeScreen = () => {
   const logo = require("assets/img/logo.png");
-
-  const [imagePicked, setImagePicked] = useState(false);
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    navigation.addListener("focus", () => {
-      setImagePicked(false);
-    });
-  }, []);
 
   const [cameraPermission, requestCameraPermission] =
     ImagePicker.useCameraPermissions();
@@ -80,24 +67,13 @@ const HomeScreen = () => {
     );
   }
 
-  if (imagePicked) {
-    return (
-      <View style={styles.container}>
-        <LoadingSpinner
-          visible={imagePicked}
-          overlayColor={"rgba(34, 34, 34,  1)"}
-        />
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <Image source={logo} style={styles.img} />
       {/*Open the image gallery*/}
-      <OpenGallery setImagePicked={setImagePicked} />
+      <PickImage type={"gallery"} />
       {/*Open the camera */}
-      <OpenCamera setImagePicked={setImagePicked} />
+      <PickImage type={"camera"} />
     </View>
   );
 };

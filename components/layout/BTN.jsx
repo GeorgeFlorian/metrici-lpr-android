@@ -1,4 +1,3 @@
-import { BACKGROUND_COLOR } from "components/lib/constants";
 import { StyleSheet, View, Pressable, Text } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const BTN = ({ label, theme = "primary", icon, onPress = () => null }) => {
+const BTN = ({ label, theme = "primary", icon, onPress }) => {
   if (theme === "primary") {
     return (
       <View style={[styles.buttonContainer]}>
